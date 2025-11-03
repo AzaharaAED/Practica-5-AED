@@ -234,7 +234,7 @@ Nota: podría extenderse la aplicación a todas las variables numéricas usando 
 
 ```{r Solucion ejercicio 6, include=TRUE, echo=TRUE, eval=TRUE, results=TRUE}
 #Con dirty_iris
-dirty_iris %>%
+dirty_iris <- dirty_iris %>%
   mutate(across(
     .cols = Petal.Length,
     .fns  = list(
@@ -247,7 +247,7 @@ dirty_iris %>%
   ))
 
 #Con clean_iris
-clean_iris %>%
+clean_iris <- clean_iris %>%
   mutate(across(
     .cols = Petal.Length,
     .fns  = list(
@@ -268,7 +268,10 @@ En los métodos de detección de outliers analizados, examina los resultados com
   * Los valores etiquetados como outliers (ordenados de menor a mayor).
 
 ```{r Solucion ejercicio 7, include=TRUE, echo=TRUE, eval=TRUE, results=TRUE}
-
+clean_iris %>% 
+  summarise(across(
+    where(is.logical),
+    ~sum(., na.rm=TRUE)))
 ```
 
 ## Ejercicio 8: Representación gráfica
